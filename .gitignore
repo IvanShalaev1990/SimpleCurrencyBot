@@ -1,11 +1,11 @@
-File
 .idea
-*.iws
 *.iml
 *.ipr
+*.env
 target
 out/
 .DS_STORE /src/main/resources/log
+.DS_STORE /src/main/resources/*.env
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
