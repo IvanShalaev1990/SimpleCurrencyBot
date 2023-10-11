@@ -1,4 +1,4 @@
-package com.mytelegrambot.feature.currency;
+package com.mytelegrambot.feature.currency.service;
 
 
 public interface CurrencyService {

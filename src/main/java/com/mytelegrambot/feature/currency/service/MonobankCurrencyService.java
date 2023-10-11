@@ -1,30 +1,16 @@
-package com.mytelegrambot.feature.currency;
+package com.mytelegrambot.feature.currency.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mytelegrambot.constance.BotConstance;
 import com.mytelegrambot.dto.CurrencyItem;
-import com.mytelegrambot.feature.mydatabase.MyDataBase;
-import org.jsoup.Jsoup;
+import com.mytelegrambot.feature.currency.repositoriy.CurrencyRepository;
 
-import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MonobankCurrencyService implements CurrencyService {
     private CopyOnWriteArrayList<CurrencyItem> currencyItems;
-
-    public MyDataBase getMyDataBase() {
-        return myDataBase;
-    }
-
-    private MyDataBase myDataBase = new MyDataBase();
-
     @Override
     public double getRate(Integer currencyCode) {
 
-        currencyItems = myDataBase.getCurrencyList();
+        currencyItems = CurrencyRepository.getCurrencyList();
 
         return currencyItems.stream()
                 .filter(it -> it.getCurrencyCodeA() == currencyCode)

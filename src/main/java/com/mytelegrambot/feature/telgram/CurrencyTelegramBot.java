@@ -1,8 +1,8 @@
 package com.mytelegrambot.feature.telgram;
 
 import com.mytelegrambot.constance.BotConstance;
-import com.mytelegrambot.feature.currency.CurrencyService;
-import com.mytelegrambot.feature.currency.MonobankCurrencyService;
+import com.mytelegrambot.feature.currency.service.CurrencyService;
+import com.mytelegrambot.feature.currency.service.MonobankCurrencyService;
 import com.mytelegrambot.feature.telgram.command.*;
 import com.mytelegrambot.feature.ui.PrintResponse;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;

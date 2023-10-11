@@ -1,4 +1,4 @@
-package com.mytelegrambot.feature.mydatabase;
+package com.mytelegrambot.feature.currency.repositoriy;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -10,11 +10,11 @@ import org.jsoup.Jsoup;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class MyDataBase {
+public class CurrencyRepository {
 
     private static CopyOnWriteArrayList<CurrencyItem> currencyList;
 
-    public MyDataBase() {
+    public CurrencyRepository() {
         setCurrencyList();
     }
 
@@ -45,10 +45,5 @@ public class MyDataBase {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void main(String[] args) {
-        MyDataBase myDataBase = new MyDataBase();
-        System.out.println("myDataBase.getCurrencyList() = " + myDataBase.getCurrencyList());
     }
 }
