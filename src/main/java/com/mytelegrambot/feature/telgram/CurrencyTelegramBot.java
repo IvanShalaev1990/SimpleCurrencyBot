@@ -1,20 +1,21 @@
 package com.mytelegrambot.feature.telgram;
 
 import com.mytelegrambot.constance.BotConstance;
-import com.mytelegrambot.feature.currency.service.CurrencyService;
-import com.mytelegrambot.feature.currency.service.MonobankCurrencyService;
+import com.mytelegrambot.feature.currency.rate.GetCurrencyRate;
 import com.mytelegrambot.feature.telgram.command.*;
 import com.mytelegrambot.feature.ui.PrintResponse;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
+import org.telegram.telegrambots.extensions.bots.commandbot.commands.helpCommand.HelpCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+
 public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
-    private CurrencyService currencyService;
+    private GetCurrencyRate getCurrencyRate;
     private PrintResponse printResponse;
     public CurrencyTelegramBot(){
-        currencyService = new MonobankCurrencyService();
+        getCurrencyRate = new GetCurrencyRate();
         printResponse = new PrintResponse();
         register(new StartCommand());
         register(new HelpCommand());
@@ -26,7 +27,7 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
     @Override
     public void processNonCommandUpdate(Update update) {
         String callbackQuery = update.getCallbackQuery().getData();
-        double currencyRate =currencyService.getRate(Integer.parseInt(callbackQuery));
+        double currencyRate =getCurrencyRate.getRate(Integer.parseInt(callbackQuery));
         String responseText =printResponse.response(currencyRate, Integer.parseInt(callbackQuery));
         SendMessage responseMessage = new SendMessage();
         responseMessage.setText(responseText);

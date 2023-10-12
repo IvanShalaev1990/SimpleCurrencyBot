@@ -3,11 +3,10 @@ package com.mytelegrambot.feature.currency.repositoriy;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mytelegrambot.constance.BotConstance;
 import com.mytelegrambot.dto.CurrencyItem;
-import org.jsoup.Jsoup;
+import com.mytelegrambot.feature.currency.service.CurrencyService;
+import com.mytelegrambot.feature.currency.service.MonobankCurrencyService;
 
-import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CurrencyRepository {
@@ -24,21 +23,8 @@ public class CurrencyRepository {
 
     public static void setCurrencyList() {
         ObjectMapper objectMapper = new ObjectMapper();
-        String url = BotConstance.URL_MONOBANK;
-        String json;
-        try {
-            json = Jsoup.connect(url)
-                    .header(BotConstance.CONTENT_TYPE, BotConstance.APPLICATION_JSON_CHARSET_UTF_8)
-                    .ignoreContentType(true)
-                    .get()
-                    .body()
-                    .text();
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new IllegalStateException("Can't connect to Monobank API");
-        }
-
-
+        CurrencyService currencyService =new MonobankCurrencyService();
+        String json = currencyService.getCurrenciesInfo();
         try {
             currencyList = objectMapper.readValue(json, new TypeReference<CopyOnWriteArrayList<CurrencyItem>>() {
             });

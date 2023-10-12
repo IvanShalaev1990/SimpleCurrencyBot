@@ -1,5 +1,4 @@
 import com.mytelegrambot.constance.BotConstance;
-import com.mytelegrambot.feature.currency.repositoriy.CurrencyRepository;
 import com.mytelegrambot.feature.currency.updateschedule.CurrencyUpdateSchedule;
 import com.mytelegrambot.feature.telgram.TelegramBotService;
 

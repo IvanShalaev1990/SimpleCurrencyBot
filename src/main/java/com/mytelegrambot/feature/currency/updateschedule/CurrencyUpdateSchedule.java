@@ -1,6 +1,5 @@
 package com.mytelegrambot.feature.currency.updateschedule;
 
-import com.mytelegrambot.constance.BotConstance;
 import com.mytelegrambot.feature.currency.repositoriy.CurrencyRepository;
 
 public class CurrencyUpdateSchedule {
